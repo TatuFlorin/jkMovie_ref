@@ -10,13 +10,16 @@ using System.Web;
 namespace jkMovie.Infrastructure.Services
 {
 
-    public class LogService<T> : ILogService
+    public class LogService : ILogService
     {
 
-        private static readonly ILog _log = LogManager.GetLogger(typeof(T));
+        private static ILog _log;
 
-        public void Loggin(LogLevels logLevels, object message)
+        public void Loggin(LogLevels logLevels, string typeOf, object message)
         {
+
+            _log = LogManager.GetLogger(typeOf);
+
             switch (logLevels)
             {
                 case LogLevels.DEBUG:

@@ -8,6 +8,6 @@ namespace jkMovie.Application.Common.Interfaces
 {
     public interface ILogService
     {
-        void Loggin(LogLevels logLevels, object message);
+        void Loggin(LogLevels logLevels, string typeOf, object message);
     }
 }
