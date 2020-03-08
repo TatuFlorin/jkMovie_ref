@@ -9,6 +9,11 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.js
+*.js.map
+*.map
+src/jkMovie/Scripts
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
