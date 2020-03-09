@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using jkMovie.Application.Common.Interfaces;
+using jkMovie.Controllers;
 using jkMovie.Infrastructure.Services;
 
 namespace jkMovie.App_Start
@@ -17,6 +18,8 @@ namespace jkMovie.App_Start
             var container = new ContainerBuilder();
 
             container.RegisterType<LogService>().As<ILogService>();
+            container.RegisterType<TMDBService>().As<ITmdbService>();
+            container.RegisterType<HomeController>().InstancePerRequest();
 
 
             var builder = container.Build();
