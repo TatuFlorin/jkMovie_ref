@@ -23,6 +23,7 @@ namespace jkMovie.App_Start
             container.RegisterType<HomeController>().InstancePerRequest();
             container.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             container.RegisterType<MovieRepository>().As<IMovieRepository>();
+            container.RegisterType<TvRepository>().As<ITvSerieRepository>();
             container.RegisterType<Connection>().As<IConnection>();
 
             var builder = container.Build();

@@ -9,8 +9,8 @@ namespace jkMovie.Application.Common.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         IMovieRepository Movies { get; }
-        //ITvSerieRepository TvSerie { get; }
-        //IEpisodeRepository Episode { get; }
+        ITvSerieRepository TvSeries { get; }
+        //IEpisodeRepository Episodes { get; }
 
 
         void Complete();
