@@ -1,0 +1,12 @@
+﻿CREATE PROCEDURE [dbo].[movie_find]
+	@Id int
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	IF EXISTS ( SELECT * FROM [dbo].[Movies] WHERE Id = @Id )
+	SELECT 1
+	ELSE
+	SELECT 0
+END

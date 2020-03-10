@@ -12,6 +12,7 @@ namespace jkMovie
     {
         protected void Application_Start()
         {
+            App_Start.Autofac.Config();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

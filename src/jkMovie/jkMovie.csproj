@@ -51,6 +51,9 @@
     <Reference Include="Autofac.Integration.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.Mvc5.5.0.0\lib\net461\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -185,13 +188,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Common\Dtos\ApiResponseDto.cs" />
+    <Compile Include="Application\Common\Dtos\GenreDto.cs" />
+    <Compile Include="Application\Common\Dtos\MovieDto.cs" />
+    <Compile Include="Application\Common\Dtos\SeasonDto.cs" />
+    <Compile Include="Application\Common\Dtos\TrailerDto.cs" />
+    <Compile Include="Application\Common\Dtos\TvSerieDto.cs" />
     <Compile Include="Application\Common\Enums\LogLevels.cs" />
+    <Compile Include="Application\Common\Enums\MediaType.cs" />
+    <Compile Include="Application\Common\Interfaces\BaseRepository.cs" />
+    <Compile Include="Application\Common\Interfaces\IBaseRepository.cs" />
+    <Compile Include="Application\Common\Interfaces\IConnection.cs" />
+    <Compile Include="Application\Common\Interfaces\IEpisodeRepository.cs" />
     <Compile Include="Application\Common\Interfaces\ILogService.cs" />
     <Compile Include="Application\Common\Interfaces\IMovieRepository.cs" />
     <Compile Include="Application\Common\Interfaces\ITmdbService.cs" />
     <Compile Include="Application\Common\Interfaces\ITvSerieRepository.cs" />
-    <Compile Include="Application\Common\Interfaces\IUnitOrWork.cs" />
-    <Compile Include="App_Start\Autofac.Config.cs" />
+    <Compile Include="Application\Common\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -206,6 +220,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Data\Connection.cs" />
+    <Compile Include="Infrastructure\Data\EpisodeRepository.cs" />
+    <Compile Include="Infrastructure\Data\MovieRepository.cs" />
+    <Compile Include="Infrastructure\Data\TvRepository.cs" />
+    <Compile Include="Infrastructure\Data\UnitOfWork.cs" />
     <Compile Include="Infrastructure\Services\TMDBService.cs" />
     <Compile Include="Infrastructure\Services\LogService.cs" />
     <Compile Include="Models\AccountViewModels.cs" />

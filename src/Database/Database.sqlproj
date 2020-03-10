@@ -64,6 +64,24 @@
     <Build Include="Tables\Episodes.sql" />
     <Build Include="Tables\Movies.sql" />
     <Build Include="Tables\TvSeries.sql" />
+    <Build Include="StoredProcedures\episode_find.sql" />
+    <Build Include="StoredProcedures\episode_getEpisodesBySeason.sql" />
+    <Build Include="StoredProcedures\episode_getTvEpisodes.sql" />
+    <Build Include="StoredProcedures\episode_getVideoSource.sql" />
+    <Build Include="StoredProcedures\episode_remove.sql" />
+    <Build Include="StoredProcedures\episode_save.sql" />
+    <Build Include="StoredProcedures\movie_find.sql" />
+    <Build Include="StoredProcedures\movie_getAll.sql" />
+    <Build Include="StoredProcedures\movie_getById.sql" />
+    <Build Include="StoredProcedures\movie_getByTitle.sql" />
+    <Build Include="StoredProcedures\movie_remove.sql" />
+    <Build Include="StoredProcedures\movie_save.sql" />
+    <Build Include="StoredProcedures\tvserie_find.sql" />
+    <Build Include="StoredProcedures\tvserie_getAll.sql" />
+    <Build Include="StoredProcedures\tvserie_getById.sql" />
+    <Build Include="StoredProcedures\tvserie_getByTitle.sql" />
+    <Build Include="StoredProcedures\tvserie_remove.sql" />
+    <Build Include="StoredProcedures\tvserie_save.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publisher\Database.publish.xml" />
