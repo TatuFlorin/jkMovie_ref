@@ -11,11 +11,6 @@ namespace jkMovie.Application.Common.Interfaces
     {
         Task AddAsync(TEntity entity);
 
-        Task<TEntity> GetByIdAsync(int id);
-        Task<IEnumerable<TEntity>> GetAllAsync();
-        Task<IEnumerable<TEntity>> GetByTitleAsync(string title);
-        Task<bool> FindAsync(int id);
-
         void Remove(TEntity entity);
     }
 }

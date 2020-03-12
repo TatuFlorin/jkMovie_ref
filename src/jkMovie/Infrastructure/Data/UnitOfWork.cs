@@ -15,7 +15,7 @@ namespace jkMovie.Infrastructure.Data
         private IDbTransaction _transaction;
         private IMovieRepository _movies;
         private ITvSerieRepository _tv;
-        //private IEpisodeRepository _episodes;
+        private IEpisodeRepository _episodes;
         private bool _disposed;
 
         public IMovieRepository Movies
@@ -28,10 +28,10 @@ namespace jkMovie.Infrastructure.Data
             get { return _tv ?? (this._tv = new TvRepository(_transaction)); }
         }
 
-        //public IEpisodeRepository Episodes
-        //{
-        //    get { return _episodes ?? (this._episodes = new EpisodeRepository(_transaction)); }
-        //}
+        public IEpisodeRepository Episodes
+        {
+            get { return _episodes ?? (this._episodes = new EpisodeRepository(_transaction)); }
+        }
 
 
         public UnitOfWork(

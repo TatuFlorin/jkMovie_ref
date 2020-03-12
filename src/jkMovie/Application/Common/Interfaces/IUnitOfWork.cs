@@ -10,7 +10,7 @@ namespace jkMovie.Application.Common.Interfaces
     {
         IMovieRepository Movies { get; }
         ITvSerieRepository TvSeries { get; }
-        //IEpisodeRepository Episodes { get; }
+        IEpisodeRepository Episodes { get; }
 
 
         void Complete();
