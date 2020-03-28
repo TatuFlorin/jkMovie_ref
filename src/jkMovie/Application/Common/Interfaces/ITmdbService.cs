@@ -15,6 +15,6 @@ namespace jkMovie.Application.Common.Interfaces
         Task<T> GetByIdAsync<T>(int id)
             where T : class;
         Task<SeasonDto> GetSeasonAsync(int id, int season_number);
-        Task<TrailerDto> GetTrailers(MediaType mediaType, int id);
+        Task<TrailerListDto> GetTrailers(MediaType mediaType, int id);
     }
 }

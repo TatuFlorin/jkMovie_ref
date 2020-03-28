@@ -116,7 +116,7 @@ namespace jkMovie.Infrastructure.Services
             }
         }
 
-        public async Task<TrailerDto> GetTrailers( MediaType mediaType, int id)
+        public async Task<TrailerListDto> GetTrailers( MediaType mediaType, int id)
         {
             var urn = string.Empty;
 
@@ -137,7 +137,7 @@ namespace jkMovie.Infrastructure.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
-                    var res = JsonConvert.DeserializeObject<TrailerDto>(result);
+                    var res = JsonConvert.DeserializeObject<TrailerListDto>(result);
 
                     return res;
                 }

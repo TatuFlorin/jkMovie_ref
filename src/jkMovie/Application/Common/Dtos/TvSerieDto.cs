@@ -1,17 +1,24 @@
-﻿using System;
+﻿using AutoMapper;
+using jkMovie.Application.Common.AutoMapperExtension;
+using jkMovie.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace jkMovie.Application.Common.Dtos
 {
-    public class TvSerieDto
+    public class TvSerieDto : IMapFrom<TvSerie>
     {
         public string first_air_date { get; set; }
         public int id { get; set; }
         public string name { get; set; }
         public string poster_path { get; set; }
         public double vote_average { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<TvSerieDto, TvSerie>()
+                .ConstructUsing(x => new TvSerie(x.id, false, x.name, x.poster_path, vote_average));
+        }
+
     }
 
     public class TvSerieComplexDto : TvSerieDto
@@ -29,6 +36,6 @@ namespace jkMovie.Application.Common.Dtos
 
         //Extra fields
         public string buttonStatus { get; set; }
-        public string trailer { get; set; }
+        public int dbnos { get; set; }
     }
 }

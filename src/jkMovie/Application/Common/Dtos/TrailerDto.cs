@@ -5,10 +5,20 @@ using System.Web;
 
 namespace jkMovie.Application.Common.Dtos
 {
-    public class TrailerDto
+    public class TrailerListDto
     {
+
         public int id { get; set; }
         public List<SourcesDto> results { get; set; }
+    }
+
+
+    public class TrailerDto
+    {
+        public TrailerDto(string path)
+            => (this.path) = (path);
+
+        public string path { get; set; }
     }
 
     public class SourcesDto
@@ -17,8 +27,5 @@ namespace jkMovie.Application.Common.Dtos
         public string site { get; set; }
         public string type { get; set; }
 
-        //public string id { get; set; }
-        //public string name { get; set; }
-        //public int size { get; set; }
     }
 }
