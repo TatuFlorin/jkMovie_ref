@@ -28,7 +28,7 @@ namespace jkMovie.App_Start
             container.RegisterType<MovieRepository>().As<IMovieRepository>();
             container.RegisterType<TvRepository>().As<ITvSerieRepository>();
             container.RegisterType<Connection>().As<IConnection>();
-            //container.RegisterType<Facade>().As<IFacade>();
+            container.RegisterType<Facade>().As<IFacade>();
 
             container.Register(x => new MapperConfiguration(Y => Y.AddProfile(new MyProfile())));
             container.Register(x => x.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();

@@ -215,9 +215,9 @@
     <Compile Include="Application\Common\Interfaces\ITmdbService.cs" />
     <Compile Include="Application\Common\Interfaces\ITvSerieRepository.cs" />
     <Compile Include="Application\Common\Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Application\Facade.cs" />
     <Content Include="App_Code\PagingHalper.cs" />
     <Content Include="App_Code\PageInfo.cs" />
+    <Compile Include="Application\Facade.cs" />
     <Compile Include="Application\IFacade.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
