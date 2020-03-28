@@ -51,6 +51,12 @@
     <Reference Include="Autofac.Integration.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.Mvc5.5.0.0\lib\net461\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Contrib.Autofac.DependencyInjection, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.Contrib.Autofac.DependencyInjection.3.1.0\lib\netstandard2.0\AutoMapper.Contrib.Autofac.DependencyInjection.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -188,14 +194,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\Common\AutoMapperExtension\IMapFrom.cs" />
+    <Compile Include="Application\Common\AutoMapperExtension\MyProfile.cs" />
     <Compile Include="Application\Common\Dtos\ApiResponseDto.cs" />
     <Compile Include="Application\Common\Dtos\GenreDto.cs" />
     <Compile Include="Application\Common\Dtos\MovieDto.cs" />
     <Compile Include="Application\Common\Dtos\SeasonDto.cs" />
     <Compile Include="Application\Common\Dtos\TrailerDto.cs" />
     <Compile Include="Application\Common\Dtos\TvSerieDto.cs" />
+    <Compile Include="Application\Common\Dtos\VideoSourceDto.cs" />
     <Compile Include="Application\Common\Enums\LogLevels.cs" />
     <Compile Include="Application\Common\Enums\MediaType.cs" />
+    <Compile Include="Application\Common\Exceptions\NotFoundException.cs" />
     <Compile Include="Application\Common\Interfaces\BaseRepository.cs" />
     <Compile Include="Application\Common\Interfaces\IBaseRepository.cs" />
     <Compile Include="Application\Common\Interfaces\IConnection.cs" />
@@ -205,6 +215,10 @@
     <Compile Include="Application\Common\Interfaces\ITmdbService.cs" />
     <Compile Include="Application\Common\Interfaces\ITvSerieRepository.cs" />
     <Compile Include="Application\Common\Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Application\Facade.cs" />
+    <Content Include="App_Code\PagingHalper.cs" />
+    <Content Include="App_Code\PageInfo.cs" />
+    <Compile Include="Application\IFacade.cs" />
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -294,10 +308,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Application\Movie\Commands\" />
-    <Folder Include="Application\Movie\Queries\" />
-    <Folder Include="Application\TvSerie\Commands\" />
-    <Folder Include="Application\TvSerie\Queries\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
