@@ -8,17 +8,20 @@ namespace jkMovie.Domain.Entities
 {
     public class TvSerie
     {
-        public TvSerie(int id
-            , bool isPosted
-            , string original_title
-            , string poster_path
-            , double vote_average)
+
+        public TvSerie(int id, bool isPosted, string original_title, string poster_path, double vote_average)
         {
             this.Id = id;
             this.title = original_title;
             this.poster = poster_path;
             this.voteAverage = vote_average;
             this.isPosted = isPosted;
+        }
+
+        public TvSerie(int id, bool isPosted, string original_title, string poster_path, double vote_average, int numberOfSeasons)
+            : this(id, isPosted, original_title, poster_path, vote_average)
+        {
+            this.numberOfSeasons = numberOfSeasons;
         }
 
         public TvSerie()
@@ -32,6 +35,7 @@ namespace jkMovie.Domain.Entities
         public double voteAverage { get; }
         public ICollection<Episode> Episodes { get; }
 
+        private int numberOfSeasons;
         private bool isPosted;
 
         public bool IsPosted
@@ -39,5 +43,12 @@ namespace jkMovie.Domain.Entities
             get { return isPosted; }
             set { isPosted = value; }
         }
+
+        public int NumberOfSeasons
+        {
+            get { return this.numberOfSeasons; }
+            set { this.numberOfSeasons = value; }
+        }
+
     }
 }

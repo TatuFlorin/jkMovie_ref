@@ -2,12 +2,9 @@
 	@seasonNumber int,
 	@tvId int,
 	@videoSource nvarchar(MAX),
-	@episodeNumber int,
-	@overview nvarchar(MAX),
-	@episodeName nvarchar(50),
-	@stillPath nvarchar(MAX)
+	@episodeNumber int
 AS
 BEGIN
-	INSERT INTO [dbo].[Episodes] (tvId, seasonNumber, episodeNumber, name, videoSource, overview, image)
-	VALUES (@tvId, @seasonNumber, @episodeNumber, @episodeName, @videoSource, @overview, @stillPath)
+	INSERT INTO [dbo].[Episodes] (tvId, seasonNumber, episodeNumber, videoSource)
+	VALUES (@tvId, @seasonNumber, @episodeNumber, @videoSource)
 END

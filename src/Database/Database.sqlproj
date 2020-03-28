@@ -82,6 +82,7 @@
     <Build Include="StoredProcedures\tvserie_getByTitle.sql" />
     <Build Include="StoredProcedures\tvserie_remove.sql" />
     <Build Include="StoredProcedures\tvserie_save.sql" />
+    <Build Include="StoredProcedures\episode_getLastEpisode.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Publisher\Database.publish.xml" />

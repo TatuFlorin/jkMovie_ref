@@ -13,5 +13,6 @@ namespace jkMovie.Application.Common.Interfaces
         Task<IEnumerable<Entities.Episode>> GetEpisodesBySeason(int id, int seasonNumer);
         Task<string> GetVideoSource(int id, int episode_number, int season_number);
         Task<bool> Find(int id, int episode_number, int season_number);
+        Task<Entities.Episode> GetLastEpisode(int id);
     }
 }

@@ -27,9 +27,6 @@ namespace jkMovie.Infrastructure.Data
                 param.Add("@seasonNumber", entity.seasonNumber);
                 param.Add("@videoSource", entity.videoSource);
                 param.Add("@episodeNumber", entity.episodeNumber);
-                param.Add("@stillPath", entity.stillPath);
-                param.Add("@overview", entity.overview);
-                param.Add("@episodeName", entity.episodeName);
 
                 await connection.ExecuteAsync(command, param, transaction, commandType: CommandType.StoredProcedure);
 
@@ -78,6 +75,17 @@ namespace jkMovie.Infrastructure.Data
             var episodes = await connection.QueryAsync<Entities.Episode>(query, param, transaction, commandType: CommandType.StoredProcedure);
 
             return episodes;
+        }
+
+        public async Task<Entities.Episode> GetLastEpisode(int id)
+        {
+            var query = "episode_getLastEpisode";
+            var param = new DynamicParameters();
+            param.Add("@Id", id);
+
+            var episodes = await connection.QueryAsync<Entities.Episode>(query, param, transaction, commandType: CommandType.StoredProcedure);
+
+            return episodes.LastOrDefault();
         }
 
         public async Task<string> GetVideoSource(int id, int episodeNumber, int seasonNumber)
