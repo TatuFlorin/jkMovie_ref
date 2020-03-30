@@ -1,0 +1,40 @@
+﻿@model jkMovie.Application.Common.Dtos.ApiResponseDto<jkMovie.Application.Common.Dtos.SearchDto>
+@using jkMovie.App_Code
+@using jkMovie.Application.Common.Enums;
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@using (Ajax.BeginForm("Search", "Tmdb", new AjaxOptions { HttpMethod = "GET", OnSuccess = "" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    @Html.EditorFor(x => x.Title_search)
+    @Html.DropDownListFor(x => x.Media_type, new SelectList(Enum.GetValues(typeof(MediaType))), "Select Type")
+
+    <button type="submit"> Search </button>
+
+    if (!(Model is null))
+    {
+        foreach (var item in Model.Results)
+        {
+
+            if (Model.Media_type == MediaType.TvSerie)
+            {
+                <a href="@Url.Action("TvDetails", "Tmdb", new { id = item.id })">@item.title</a>
+            }
+            else
+            {
+                <a href="@Url.Action("MovieDetails", "Tmdb", new { id = item.id })">@item.title</a>
+            }
+        }
+        @Html.Paging(new PageInfo(Model.Total_results, 20, Model.Page), x => Url.Action("Search", "Tmdb", new { Title_search = Model.Title_search, page = x, mediaType = Model?.Media_type }))
+    }
+
+    @Html.HiddenFor(x => x.Media_type)
+    @Html.HiddenFor(x => x.Title_search)
+    @Html.HiddenFor(x => x.Page)
+
+}

@@ -1,0 +1,54 @@
+﻿@model jkMovie.Application.Common.Dtos.TvSerieComplexDto
+
+@{
+    ViewBag.Title = "TvDetails";
+}
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+@using (Ajax.BeginForm("SaveTv", "Tmdb", new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccess" }))
+{
+
+    <input type="submit" name="submit" value="Save" />
+
+
+    @Html.HiddenFor(x => x.id)
+    @Html.HiddenFor(x => x.name)
+    @Html.HiddenFor(x => x.poster_path)
+    @Html.HiddenFor(x => x.vote_average)
+    @Html.HiddenFor(x => x.dbnos)
+}
+
+
+@for (int i = 1; i <= Model.dbnos; i++)
+{
+    <a href="@Url.Action("GetSeason", "Tmdb", new { id = Model.id, seasonNumber = i })">Season @i</a>
+}
+
+
+@using (Ajax.BeginForm("AddNextEpisode", "Tmdb", new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccess1" }))
+{
+    <div>
+        @Html.Label("Add new episode: ")
+        <input type="text" name="videoSource" value="" />
+
+
+        <input type="submit" name="name" value="Save" />
+    </div>
+
+    @Html.HiddenFor(x => x.id)
+}
+
+<script>
+    function OnSuccess() {
+        event.preventDefault();
+        window.alert("Tv was added to the database!");
+    }
+
+    function OnSuccess1() {
+        event.preventDefault();
+        location.reload();
+        window.alert("New Episode was added!");
+    }
+</script>

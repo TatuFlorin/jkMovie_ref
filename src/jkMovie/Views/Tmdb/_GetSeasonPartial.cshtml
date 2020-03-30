@@ -1,0 +1,9 @@
+﻿@model jkMovie.Application.Common.Dtos.SeasonDto
+
+@if (Model != null)
+{
+    foreach (var episode in Model.episodes)
+    {
+    <div>@episode.name</div>
+    }
+}

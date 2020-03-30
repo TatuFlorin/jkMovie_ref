@@ -1,0 +1,31 @@
+﻿@model jkMovie.Application.Common.Dtos.MovieComplexDto
+
+@{
+    ViewBag.Title = "MovieDetails";
+}
+
+
+@using ( Ajax.BeginForm("SaveMovie", "Tmdb", new AjaxOptions { HttpMethod = "post" , OnSuccess = "OnSuccess" }))
+{
+    @Html.EditorFor(x => x.source_path)
+
+    <input type="submit" name="name" value="Save" />
+
+
+
+    @Html.HiddenFor(x => x.id)
+    @Html.HiddenFor(x => x.title)
+    @Html.HiddenFor(x => x.poster_path)
+    @Html.HiddenFor(x => x.vote_average)
+    @Html.HiddenFor(x => x.source_path)
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+    function OnSuccess() {
+        event.preventDefault();
+        window.alert("Movie was added!")
+    }
+</script>

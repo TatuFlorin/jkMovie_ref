@@ -24,6 +24,7 @@ namespace jkMovie.App_Start
             container.RegisterType<LogService>().As<ILogService>();
             container.RegisterType<TMDBService>().As<ITmdbService>();
             container.RegisterType<HomeController>().InstancePerRequest();
+            container.RegisterType<TmdbController>().InstancePerRequest();
             container.RegisterType<UnitOfWork>().As<IUnitOfWork>();
             container.RegisterType<MovieRepository>().As<IMovieRepository>();
             container.RegisterType<TvRepository>().As<ITvSerieRepository>();
