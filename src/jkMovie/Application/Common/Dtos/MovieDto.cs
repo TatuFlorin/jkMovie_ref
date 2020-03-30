@@ -24,10 +24,13 @@ namespace jkMovie.Application.Common.Dtos
         public string source_path { get; set; }
         public bool isPosted { get; set; }
 
-        public void Mapping(Profile profile)
+        private void Mapping(Profile profile)
         {
             profile.CreateMap<MovieDto, Movie>()
                 .ConvertUsing(x => new Movie(x.id, x.title, x.poster_path, x.vote_average, x.source_path, x.isPosted));
+            profile.CreateMap<TvSerieDto, MovieDto>()
+                .ForMember(x => x.title, x => x.MapFrom(y => y.name))
+                .ForMember(x => x.release_date, x => x.MapFrom(y => y.first_air_date));
         }
     }
 

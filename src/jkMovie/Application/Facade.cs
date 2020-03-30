@@ -33,8 +33,12 @@ namespace jkMovie.Application
             context.Complete();
         }
 
-        public async Task<ApiResponseDto<MovieDto>> MoviesAsync(string keyword, int? page)
-            => await tmdb.GetAllAsync<MovieDto>(keyword, page);
+        public async Task<ApiResponseDto<SearchDto>> MoviesAsync(string keyword, int? page)
+        {
+            var source = await tmdb.GetAllAsync<MovieDto>(keyword, page);
+            var response = mapper.Map<ApiResponseDto<MovieDto>, ApiResponseDto<SearchDto>>(source);
+            return response;
+        }
 
         public async Task<IEnumerable<Movie>> DbMoviesAsync()
             => await context.Movies.GetAllAsync();
@@ -66,8 +70,12 @@ namespace jkMovie.Application
             context.Complete();
         }
 
-        public async Task<ApiResponseDto<TvSerieDto>> TvSeriesAsync(string keyword, int? page)
-            => await tmdb.GetAllAsync<TvSerieDto>(keyword, page);
+        public async Task<ApiResponseDto<SearchDto>> TvSeriesAsync(string keyword, int? page)
+        {
+            var source = await tmdb.GetAllAsync<TvSerieDto>(keyword, page);
+            var response = mapper.Map<ApiResponseDto<TvSerieDto>, ApiResponseDto<SearchDto>>(source);
+            return response;
+        }
 
         public async Task<IEnumerable<TvSerie>> DbTvSeriesAsync()
             => await context.TvSeries.GetAllAsync();
@@ -76,7 +84,12 @@ namespace jkMovie.Application
             => await context.TvSeries.GetByTitleAsync(title);
 
         public async Task<TvSerieComplexDto> TvDetailsAsync(int tvId)
-            => await tmdb.GetByIdAsync<TvSerieComplexDto>(tvId);
+        {
+            var source = await tmdb.GetByIdAsync<TvSerieComplexDto>(tvId);
+            var dbDetails = await context.TvSeries.GetByIdAsync(tvId);
+            source.dbnos = dbDetails == null ? 0 : dbDetails.NumberOfSeasons;
+            return source;
+        }
 
         public async Task<VideoSourceDto> EpisodeSourceAsync(int tvId, int episodeNumber, int seasonNumber)
             => new VideoSourceDto(await context.Episodes.GetVideoSource(tvId, episodeNumber, seasonNumber));
@@ -116,8 +129,11 @@ namespace jkMovie.Application
                     : new Episode(tvId, lastEpisode.seasonNumber + 1, 1, videoPath)
                 : new Episode(tvId, lastEpisode.seasonNumber, lastEpisode.episodeNumber + 1, videoPath);
 
+            context.TvSeries.Remove(tv);
+
             tv.NumberOfSeasons = newEpisode.seasonNumber;
             await context.Episodes.AddAsync(newEpisode);
+            await context.TvSeries.AddAsync(tv);
             context.Complete();
         }
 

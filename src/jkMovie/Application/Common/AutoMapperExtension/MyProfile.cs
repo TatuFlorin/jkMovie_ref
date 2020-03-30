@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using jkMovie.Application.Common.Dtos;
 using jkMovie.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,22 @@ namespace jkMovie.Application.Common.AutoMapperExtension
 
             foreach (var item in types)
             {
-                var INSTANCE = Activator.CreateInstance(item);
-                var METHODINFO = item.GetMethod("Mapping");
-                METHODINFO?.Invoke(INSTANCE, new object[] { this });
+                object INSTANCE = null;
+                MethodInfo METHODINFO = null;
+
+                if (item.IsGenericType)
+                {
+                    var t = item.MakeGenericType(typeof(MovieDto));
+                    INSTANCE = Activator.CreateInstance(t);
+                    METHODINFO = t.GetMethod("Mapping", BindingFlags.NonPublic | BindingFlags.Instance);
+                    METHODINFO?.Invoke(INSTANCE, new object[] { this });
+                }
+                else
+                {
+                    INSTANCE = Activator.CreateInstance(item);
+                    METHODINFO = item.GetMethod("Mapping", BindingFlags.NonPublic | BindingFlags.Instance);
+                    METHODINFO?.Invoke(INSTANCE, new object[] { this });
+                }
             }
         }
     }

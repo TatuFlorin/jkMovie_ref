@@ -7,13 +7,14 @@ namespace jkMovie.Application.Common.Dtos
 {
     public class TvSerieDto : IMapFrom<TvSerie>
     {
-        public string first_air_date { get; set; }
         public int id { get; set; }
+        public string first_air_date { get; set; }
         public string name { get; set; }
         public string poster_path { get; set; }
         public double vote_average { get; set; }
+        public bool isPosted { get; set; }
 
-        public void Mapping(Profile profile)
+        private void Mapping(Profile profile)
         {
             profile.CreateMap<TvSerieDto, TvSerie>()
                 .ConstructUsing(x => new TvSerie(x.id, false, x.name, x.poster_path, vote_average));

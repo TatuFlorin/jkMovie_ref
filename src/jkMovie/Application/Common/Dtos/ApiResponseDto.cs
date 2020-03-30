@@ -1,11 +1,14 @@
-﻿using System;
+﻿using AutoMapper;
+using jkMovie.Application.Common.AutoMapperExtension;
+using jkMovie.Application.Common.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace jkMovie.Application.Common.Dtos
 {
-    public class ApiResponseDto<T>
+    public class ApiResponseDto<T> : IMapFrom<ApiResponseDto<TvSerieDto>>
         where T : class
     {
         public ApiResponseDto()
@@ -13,9 +16,9 @@ namespace jkMovie.Application.Common.Dtos
         }
 
         public ApiResponseDto(
-            string media_type
+            MediaType media_type
             , string title_search
-            , int page
+            , int? page
             , List<T> results
             , int total_pages
             , int total_results
@@ -29,11 +32,18 @@ namespace jkMovie.Application.Common.Dtos
             Total_results = total_results;
         }
 
-        public string Media_type { get; set; }
+        public MediaType Media_type { get; set; }
         public string Title_search { get; set; }
-        public int Page { get; set; }
+        public int? Page { get; set; }
         public List<T> Results { get; set; }
         public int Total_pages { get; set; }
         public int Total_results { get; set; }
+
+        private void Mapping(Profile profile)
+        {
+            profile.CreateMap(typeof(ApiResponseDto<TvSerieDto>), typeof(ApiResponseDto<SearchDto>));
+            profile.CreateMap(typeof(ApiResponseDto<MovieDto>), typeof(ApiResponseDto<SearchDto>));
+        }
+
     }
 }
