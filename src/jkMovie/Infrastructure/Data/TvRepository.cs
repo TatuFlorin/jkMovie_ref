@@ -31,6 +31,7 @@ namespace jkMovie.Infrastructure.Data
                 param.Add("@poster", entity.poster);
                 param.Add("@voteAverage", entity.voteAverage);
                 param.Add("@isPosted", entity.IsPosted);
+                param.Add("@numberOfSeasons", entity.NumberOfSeasons);
 
                 await connection.ExecuteAsync(command, param, transaction, commandType: CommandType.StoredProcedure);
             }

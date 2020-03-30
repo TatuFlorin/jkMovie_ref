@@ -26,7 +26,7 @@ namespace jkMovie.Infrastructure.Services
         public async Task<ApiResponseDto<T>> GetAllAsync<T>(string keyword, int? page) where T : class
         {
             var urn = string.Empty;
-            var mediaType = string.Empty;
+            var mediaType = new MediaType();
             var typeOfT = typeof(T).Name;
 
             if (typeOfT.ToLower().Contains("movie"))
@@ -34,18 +34,18 @@ namespace jkMovie.Infrastructure.Services
                 urn = $"search/movie?api_key={apiKey}" +
                           $"&language=en-US&query={ keyword }" +
                           $"&page={ page ?? 1 }&include_adult=false";
-                mediaType = "movie";
+                mediaType = MediaType.Movie;
             }
             else if (typeOfT.ToLower().Contains("tvserie"))
             {
                 urn = $"search/tv?api_key={apiKey}" +
                           $"&language=en-US&query={ keyword }" +
                           $"&page={ page ?? 1 }&include_adult=false";
-                mediaType = "tv";
+                mediaType = MediaType.TvSerie;
             }
             else
             {
-                throw new Exception();
+                return null;
             }
 
             using (HttpResponseMessage response = await _client.GetAsync(urn))
@@ -63,7 +63,10 @@ namespace jkMovie.Infrastructure.Services
                         , res.Total_pages
                         , res.Total_results);
                 }
-                else { throw new Exception(); }
+                else
+                {
+                    return null;
+                }
             }
         }
 
