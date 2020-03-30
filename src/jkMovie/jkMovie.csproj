@@ -240,7 +240,7 @@
     <Compile Include="Application\Common\Interfaces\ITmdbService.cs" />
     <Compile Include="Application\Common\Interfaces\ITvSerieRepository.cs" />
     <Compile Include="Application\Common\Interfaces\IUnitOfWork.cs" />
-    <Content Include="App_Code\PagingHalper.cs" />
+    <Content Include="App_Code\PagingHelper.cs" />
     <Content Include="App_Code\PageInfo.cs" />
     <Compile Include="Application\Facade.cs" />
     <Compile Include="Application\IFacade.cs" />
@@ -271,7 +271,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
