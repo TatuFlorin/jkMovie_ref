@@ -11,7 +11,7 @@
 *.sln.docstates
 *.js
 *.map
-src/jkMovie/Scripts
+./src/jkMovie/Scripts
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
